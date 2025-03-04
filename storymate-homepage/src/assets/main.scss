@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  column-gap: 16px;
+  .space {
+    flex: 1;
+  }
+  &.center {
+    justify-content: center;
+  }
+}
