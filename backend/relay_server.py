@@ -57,7 +57,7 @@ async def main():
             'openai-beta.realtime-v1',
         ]
     )
-    print("WebSocket server started on ws://0.0.0.0:8766")
+    print("WebSocket server started on ws://0.0.0.0:8767")
     await server.wait_closed()
 
 if __name__ == "__main__":

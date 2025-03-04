@@ -67,7 +67,7 @@ const wavStreamPlayerRef = ref(
     new WavStreamPlayer({ sampleRate: 24000 })
 );
 const clientRef = ref(
-    new RealtimeClient( { url: 'wss://storybook-reader.hailab.io:8766' } )
+    new RealtimeClient( { url: 'wss://storymate.hailab.io:8767' } )
 );
 
 onMounted(async () => {
