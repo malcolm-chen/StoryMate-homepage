@@ -316,8 +316,8 @@ const playPageSentences = () => {
         **Instructions for Initiating the Conversation**:
         - Begin the interaction by posing the first question, which will guide to the concept word.
         - You should use different ways to open the conversation. For example: "Hmm, this part of the story is so interesting! + first question"; "Hey xxx, share with me what you think + first question"; "xxx, let's chat about what you just read! + first question"; etc. 
-        - You should not directly use the provided question. You should tailor the first question to the child's age and interests. For instance, you can set a scene and embed the child's favorite character in the posed question.
-        - You should not pose a yes/no question (bad examples: "Can you tell me xxx", "Do you know xxx?", "Can you think of xxx").
+        - You should NOT directly use the provided question. You should tailor the first question to the child's age and interests. For instance, you can set a scene and embed the child's favorite character in the posed question.
+        - You should NOT pose a yes/no question (bad examples: "Can you tell me xxx", "Do you know xxx?", "Can you think of xxx").
         - Always end your first turn of conversation with a question, instead of a declarative sentence.
 
         **Reminders**:
