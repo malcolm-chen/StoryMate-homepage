@@ -1,6 +1,27 @@
 <script setup lang="ts">
 import Author from '../components/Author.vue'
 import Demo from '../components/Demo.vue'
+import { ref } from 'vue'
+
+const citationText = ref<HTMLPreElement | null>(null)
+const isCopied = ref(false)
+
+const copyCitation = () => {
+  if (citationText.value?.textContent) {
+    const text = citationText.value.textContent
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        isCopied.value = true
+        setTimeout(() => {
+          isCopied.value = false
+        }, 2000)
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err)
+      })
+  }
+}
 
 const scrollToDemo = () => {
   const demoSection = document.getElementById('demo-section');
@@ -126,13 +147,9 @@ const scrollToDemo = () => {
         <Demo />
     </div>
     <div class="row center">
-        <h2>
-            Citation
-        </h2>
-    </div>
-    <div class="row center">
-        <div class="citation">
-            <pre class="citation-text">
+      <div class="citation">
+        <h3>Citation</h3>
+        <pre class="citation-text" ref="citationText">
 @inproceedings{chen2025storymate,
   author    = {Jiaju Chen and Minglong Tang and Yuxuan Lu and Bingsheng Yao and Elissa Fan and Xiaojuan Ma and Ying Xu and Dakuo Wang and Yuling Sun and Liang He},
   title     = {StoryMate: An LLM-Empowered Personalized Interactive Story-Reading Tool for Children},
@@ -144,8 +161,24 @@ const scrollToDemo = () => {
   doi       = {10.1145/3706598.3713275},
   isbn      = {979-8-4007-1394-1},
 }</pre>
-        </div>
-    </div>
+        <n-button quaternary circle size="tiny" class="copy-button" @click="copyCitation">
+          <template #icon>
+            <n-icon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </n-icon>
+          </template>
+        </n-button>
+      </div>
+      </div> 
     </div>
   </main>
 </template>
@@ -184,31 +217,6 @@ h2 {
   }
 }
 
-.citation {
-  margin: 32px 0;
-  width: 80%;
-  max-width: 800px;
-
-  h3 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .citation-text {
-    background-color: #f5f5f5;
-    padding: 16px;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 14px;
-    overflow-x: auto;
-    white-space: pre-wrap;
-    text-align: left;
-  }
-}
-
 .title-container {
   display: flex;
   align-items: flex-start;
@@ -233,5 +241,49 @@ h1 {
   margin: 0;
   flex: 1;
   line-height: 1.2;
+}
+
+.citation {
+  margin: 32px 0;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .citation-text {
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    text-align: left;
+  }
+
+  .copy-button {
+    font-size: 24px;
+    position: absolute;
+    top: calc(1.6 * 24px + 16px + 10px);
+    right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+
+    &.copied {
+      background-color: #4caf50;
+      color: white;
+    }
+  }
 }
 </style>

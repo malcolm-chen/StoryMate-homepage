@@ -1040,11 +1040,11 @@ const playPageSentences = () => {
         <n-tag type="info" :style="{ marginTop: '10px', marginBottom: '10px', zIndex: 103 }">
             Remaining Requests: {{ remainingRequests }}
         </n-tag>
+        <div v-if="isContainerDisabled" class="disabled-message">
+            <p>You have used all your available requests 🖐️</p>
+        </div>
         <div class="main-container" :class="{ 'disabled': isContainerDisabled }">
             <div v-if="isContainerDisabled" class="disabled-overlay">
-                <div class="disabled-message">
-                    <p>You have used all your available requests 🖐️</p>
-                </div>
             </div>
             <div class="header">
                 <h3 class="header-title">Why Frogs are Wet?</h3>
@@ -1086,18 +1086,18 @@ const playPageSentences = () => {
                         <div v-if="msg.role === 'user'" id="user-chat">
                             <n-avatar round id='user-avatar' :style="{ backgroundColor: '#ACD793', marginRight: '8px' }">{{ childName.substring(0, 2) }}</n-avatar>
                             <div id="msg-bubble" :style="{ backgroundColor: '#ECECEC' }">
-                                <h5 v-if="msg.content[0].transcript !== null" level="body-lg" :style="{ margin: '0px' }">{{ msg.content[0].transcript }}</h5>
+                                <h4 v-if="msg.content[0].transcript !== null" level="body-lg" :style="{ margin: '0px' }">{{ msg.content[0].transcript }}</h4>
                                 <n-icon v-else>
-                                    <LoadingOutlined id="loading-icon" size="20" color="#7AA2E3" />
+                                    <LoadingOutlined id="loading-icon" size="30" color="#7AA2E3" />
                                 </n-icon>
                             </div>
                         </div>
                         <div v-else id="chatbot-chat">
                             <img id='chatbot-avatar' src='/imgs/penguin.svg' />
                             <div id="msg-bubble" :style="{ position: 'relative' }" @click="handleReplay(index)">
-                                <h5 v-if="!msg.content?.[0]?.transcript?.startsWith('<')" level="body-lg" :style="{ margin: '0px', marginRight: '30px' }">
+                                <h4 v-if="!msg.content?.[0]?.transcript?.startsWith('<')" level="body-lg" :style="{ margin: '0px', marginRight: '30px' }">
                                     {{ msg.content?.[0]?.transcript }}
-                                </h5>
+                                </h4>
                                 <n-button v-if="msg.status === 'completed' && !msg.content?.[0]?.transcript?.startsWith('<')" id="replay-btn" :key="index" quaternary :style="{ position: 'absolute', right: '8px', bottom: '8px' }">
                                     <template v-if="replayingIndex === index">
                                         <n-icon><PauseCircle size="25" color="#2A2278" /></n-icon>
@@ -1158,7 +1158,7 @@ const playPageSentences = () => {
                             </n-input>
                         </n-space>
                         <div style="display: flex; justify-content: center; margin-top: 20px;">
-                            <n-button id="start-button" strong secondary round type="tertiary" @click="playPageSentences">Start Reading!</n-button>
+                            <n-button id="start-button" type="info" @click="playPageSentences">Start Reading!</n-button>
                         </div>
                     </n-card>
                 </div>
@@ -1188,13 +1188,6 @@ const playPageSentences = () => {
 }
 
 #start-button {
-    font-size: 20px;
-    font-family: 'Cherry Bomb';
-    font-weight: bold;
-    border-radius: 50px;
-    padding: 10px 20px;
-    width: 200px;
-    color: #333333;
 }
 
 .container {
@@ -1526,17 +1519,22 @@ const playPageSentences = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 999;
 }
 
 .disabled-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: white;
-    padding: 2rem;
+    padding: 20px;
     border-radius: 8px;
-    text-align: center;
-    max-width: 400px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 1002;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
 }
 
 .disabled-message h2 {
@@ -1546,7 +1544,7 @@ const playPageSentences = () => {
 }
 
 .disabled-message p {
-    color: #666;
+    color: #000000;
     font-family: 'BM Jua';
     font-size: 1.1rem;
 }
