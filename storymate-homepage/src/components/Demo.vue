@@ -1046,7 +1046,7 @@ const playPageSentences = () => {
 </script>
 
 <template>
-    <div class="container" :class="{ 'disabled': isContainerDisabled }">
+    <div class="demo-container" :class="{ 'disabled': isContainerDisabled }">
         <n-tag type="info" :style="{ marginTop: '10px', marginBottom: '10px', zIndex: 103 }">
             Remaining Requests: {{ remainingRequests }}
         </n-tag>
@@ -1060,6 +1060,38 @@ const playPageSentences = () => {
                 <h3 class="header-title">Why Frogs are Wet?</h3>
             </div>
             <div id='main-container'>
+                <div id="start-box" v-if="isStartButtonVisible" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', zIndex: 101 }">
+                    <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', maxHeight: '100%', position: 'relative' }">
+                        <!-- <div id="star-box">
+                                <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
+                                <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
+                        </div> -->
+                        <n-card title="Child's Background" size="medium" class="persona-card" :style="{ border: 'none', position: 'relative' }">
+                            <div id="moon-box">
+                                <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
+                            </div>
+                            <n-space vertical style="text-align: left; z-index: 100;">
+                                What should I call you?
+                                <TypewriterInput v-model="childName" round placeholder="Emma" required :validateField="validateFields" />
+                                How old are you?
+                                <TypewriterInput v-model="childAge" round placeholder="6" required :validateField="validateFields">
+                                    <template #suffix>
+                                        years old
+                                    </template>
+                                </TypewriterInput>
+                                What is your favorite character or topic?
+                                <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
+                                <div style="display: flex; justify-content: center; margin-top: 8px; position: relative;">
+                                <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', borderRadius: '20px', zIndex: 101 }"></div>
+                                <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">
+                                    <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%', zIndex: 101 }" />
+                                    Start Reading!
+                                </n-button>
+                            </div>
+                            </n-space>
+                        </n-card>
+                    </div>
+                </div>
                 <div id='book-container'>
                     <div id='book-content'>
                         <div id='book-img'>
@@ -1149,37 +1181,7 @@ const playPageSentences = () => {
                 <div id='moon-chat-box'>
                     <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '0', right: '0', zIndex: -1 }" />
                 </div>
-            </div>
-            <div id="start-box" v-if="isStartButtonVisible" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }">
-                <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '40%', position: 'relative' }">
-                    <n-card title="Child's Background" size="medium" class="persona-card" :style="{ border: 'none', position: 'relative' }">
-                        <div id="star-box">
-                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
-                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
-                        </div>
-                        <div id="moon-box">
-                            <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
-                        </div>
-                        <n-space vertical style="text-align: left; z-index: 100;">
-                            What should I call you?
-                            <TypewriterInput v-model="childName" round placeholder="Emma" required :validateField="validateFields" />
-                            How old are you?
-                            <TypewriterInput v-model="childAge" round placeholder="6" required :validateField="validateFields">
-                                <template #suffix>
-                                    years old
-                                </template>
-                            </TypewriterInput>
-                            What is your favorite character or topic?
-                            <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
-                        </n-space>
-                        <div style="display: flex; justify-content: center; margin-top: 8px; position: relative;">
-                            <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', left: '28%', borderRadius: '20px', zIndex: 101 }"></div>
-                            <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: 'calc(6px + 25%)', borderRadius: '50%', zIndex: 101 }" />
-                            <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">Start Reading!</n-button>
-                        </div>
-                    </n-card>
-                </div>
-            </div>
+            </div>  
         </div>
     </div>
 </template>
@@ -1200,6 +1202,9 @@ const playPageSentences = () => {
     color: #FFFFFF;
     font-family: 'BM Jua'; 
     background-image: linear-gradient(to bottom, #261E70, #5C4ED4);
+}
+.n-card-header {
+    padding: 8px !important;
 }
 
 .n-card-header__main {
@@ -1235,7 +1240,7 @@ const playPageSentences = () => {
     border-radius: 50px;
 }
 
-.container {
+.demo-container {
     position: relative;
     margin-left: 0;
     height: 100%;
@@ -1328,7 +1333,7 @@ const playPageSentences = () => {
 
 #caption {
   font-weight: 200;
-  width: 70%;
+  width: 90%;
   font-family: 'BM Jua';
   font-size: 28px;
   color: #3F150B;
@@ -1337,6 +1342,9 @@ const playPageSentences = () => {
   display: flex;
   justify-content: center;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 #caption-box {

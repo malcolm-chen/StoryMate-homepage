@@ -35,14 +35,12 @@ const scrollToDemo = () => {
   <main class="container">
     <div class="hero-body">
       <div class="row center">
-        <div class="title-container">
-          <img src="/imgs/logo-chi2025.svg" alt="CHI 2025 Logo" class="chi-logo" />
-          <h1 style="font-size: 40px;">
+          <!-- <img src="/imgs/logo-chi2025.svg" alt="CHI 2025 Logo" class="chi-logo" /> -->
+          <h1 style="font-size: 35px;">
               Characterizing LLM-Empowered Personalized Story-Reading and Interaction for Children: 
               <br>
               Insights from Multi-Stakeholder Perspectives
           </h1>
-        </div>
       </div>
       <div class="row center" style="margin-bottom: 16px;">
         <h2 style="font-size:30px; font-weight: 400; color: #333; margin-top: 6px;">
@@ -73,6 +71,7 @@ const scrollToDemo = () => {
         <pre>jiajuchen89@gmail.com</pre>
         <pre>ylsun@cs.ecnu.edu.cn</pre>
       </div>
+    </div>
       <div class="row center" style="margin-top: 48px; margin-bottom: 48px;">
       <a href="https://arxiv.org/abs/2503.00590" target="_blank">
         <n-button round>
@@ -177,7 +176,6 @@ const scrollToDemo = () => {
             </n-icon>
           </template>
         </n-button>
-      </div>
       </div> 
     </div>
   </main>
@@ -214,6 +212,9 @@ h2 {
     color: #333;
     text-align: center;
     margin-right: 16px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
@@ -285,5 +286,14 @@ h1 {
       color: white;
     }
   }
+}
+
+.row.center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
 }
 </style>
