@@ -331,6 +331,7 @@ const playPageSentences = () => {
 
         **Reminders**:
         - The conversation should be tailored to the child's age and interests.
+        - The whole conversation should only include ONE question.
         - Maintain a friendly, conversational tone.
         - Keep sentences simple, engaging, and under 25 words.
         - Avoid assuming or making up the child's response. Just wait for the child's response for each turn.
