@@ -53,8 +53,6 @@ const scrollToDemo = () => {
         <Author author="Bingsheng Yao" href="https://www.bingshengyao.com/" sup="2" />,
         <Author author="Elissa Fan" sup="3" />, 
         <Author author="Xiaojuan Ma" href="https://www.cse.ust.hk/~mxj/" sup="4" />,
-      </div>
-      <div class="row center">
         <Author author="Ying Xu" href="https://ying-xu.com/" sup="5" />, 
         <Author author="Dakuo Wang" href="https://www.dakuowang.com/" sup="2" />,
         <Author author="Yuling Sun" href="https://www.yulingsun.net/" sup="1" />, 
