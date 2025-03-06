@@ -1066,7 +1066,7 @@ const playPageSentences = () => {
                                 <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
                                 <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
                         </div> -->
-                        <n-card title="Child's Background" size="medium" class="persona-card" :style="{ border: 'none', position: 'relative' }">
+                        <n-card title="Child's Background" size="small" class="persona-card" :style="{ border: 'none', position: 'relative' }">
                             <div id="moon-box">
                                 <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
                             </div>
@@ -1081,7 +1081,7 @@ const playPageSentences = () => {
                                 </TypewriterInput>
                                 What is your favorite character or topic?
                                 <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
-                                <div style="display: flex; justify-content: center; margin-top: 8px; position: relative;">
+                                <div style="display: flex; justify-content: center; position: relative;">
                                 <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', borderRadius: '20px', zIndex: 101 }"></div>
                                 <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">
                                     <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%', zIndex: 101 }" />
@@ -1210,7 +1210,7 @@ const playPageSentences = () => {
 .n-card-header__main {
     color: #FFFFFF !important;
     font-family: 'Cherry Bomb' !important;
-    font-size: 24px !important;
+    font-size: 20px !important;
 }
 
 #start-box {

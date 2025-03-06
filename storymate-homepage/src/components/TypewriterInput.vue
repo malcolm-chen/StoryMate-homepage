@@ -118,12 +118,11 @@ onUnmounted(() => {
 .input-container {
   position: relative;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .n-input {
   font-family: 'BM Jua';
-  margin-bottom: 4px;
   z-index: 100;
 }
 
@@ -131,7 +130,6 @@ onUnmounted(() => {
   position: absolute;
   color: #ff4d4f;
   font-size: 12px;
-  margin-top: 4px;
   font-family: 'BM Jua';
   z-index: 101;
 }
