@@ -1194,6 +1194,13 @@ const playPageSentences = () => {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'BM Jua';
+  src: url('/fonts/Jua-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .persona-card {
     border: none !;
     border-radius: 24px; 
