@@ -55,7 +55,7 @@ const childInterests = ref('');
 const validateFields = ref(false);
 
 // Change remainingRequests to be a ref
-const remainingRequests = ref(localStorage.getItem('remainingRequests') !== null ? parseInt(localStorage.getItem('remainingRequests')) : 3);
+const remainingRequests = ref(localStorage.getItem('remainingRequests') !== null ? parseInt(localStorage.getItem('remainingRequests')) : 4);
 
 // Add these refs for audio handling
 const audioContext = ref(null);
