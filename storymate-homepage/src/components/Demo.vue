@@ -8,6 +8,7 @@ import { PlayCircle, PauseCircle, ChevronCircleUp, ChevronCircleDown, MinusCircl
 import { CloseCircle } from "@vicons/ionicons5";
 import { AVWaveform } from "vue-audio-visual";
 import AudioWave from './AudioWave.vue';
+import TypewriterInput from './TypewriterInput.vue';
 
 const isStartButtonVisible = ref(true);
 const currentPageRef = ref(3);
@@ -48,9 +49,10 @@ const canPushToTalk = ref(true);
 const isEnding = ref(false);
 
 // Add refs for child information
-const childName = ref('Emma');
-const childAge = ref('6');
-const childInterests = ref('Snow White');
+const childName = ref('');
+const childAge = ref('');
+const childInterests = ref('');
+const validateFields = ref(false);
 
 // Change remainingRequests to be a ref
 const remainingRequests = ref(localStorage.getItem('remainingRequests') !== null ? parseInt(localStorage.getItem('remainingRequests')) : 3);
@@ -217,6 +219,13 @@ const togglePlayPause = () => {
 };
 
 const playPageSentences = () => {
+    validateFields.value = true;  // Set validation state to true first
+    
+    // Check if fields are empty or just whitespace
+    if (!childName.value?.trim() || !childAge.value?.trim() || !childInterests.value?.trim()) {
+        return;  // Keep validateFields.value as true to show the error messages
+    }
+    
     isStartButtonVisible.value = false;
     if (pages.value[currentPageRef.value]?.text) {
         sentenceIndexRef.value = 0;
@@ -1078,8 +1087,8 @@ const playPageSentences = () => {
                 </div>
                 <div class='chat-window'>
                     <div v-if="chatHistoryIsEmpty" id='loading-box'>
-                        <n-icon>
-                            <LoadingOutlined id='loading-icon' size="40" color="#7AA2E3" />
+                        <n-icon s>
+                            <LoadingOutlined id='loading-icon' color="#7AA2E3" />
                         </n-icon>
                     </div>
                     <div v-for="(msg, index) in filteredChatHistory" :key="index" :id="msg.role === 'user' ? 'user-msg' : 'chatbot-msg'">
@@ -1141,24 +1150,31 @@ const playPageSentences = () => {
                 </div>
             </div>
             <div id="start-box" v-if="isStartButtonVisible" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }">
-                <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '40%' }">
-                    <n-card title="Child's Background" size="medium" >
-                        <n-space vertical>
-                            Name
-                            <n-input v-model:value="childName" placeholder="Emma">
-                            </n-input>
-                            Age
-                            <n-input v-model:value="childAge" round placeholder="6">
-                            <template #suffix>
-                                years old
-                            </template>
-                            </n-input>
-                            Interests
-                            <n-input v-model:value="childInterests" round placeholder="Snow White">
-                            </n-input>
+                <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '40%', position: 'relative' }">
+                    <n-card title="Child's Background" size="medium" class="persona-card" :style="{ border: 'none', position: 'relative' }">
+                        <div id="star-box">
+                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 1 }" />
+                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 1 }" />
+                        </div>
+                        <div id="moon-box">
+                            <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
+                        </div>
+                        <n-space vertical style="text-align: left; z-index: 100;">
+                            What should I call you?
+                            <TypewriterInput v-model="childName" round placeholder="Emma" required :validateField="validateFields" />
+                            How old are you?
+                            <TypewriterInput v-model="childAge" round placeholder="6" required :validateField="validateFields">
+                                <template #suffix>
+                                    years old
+                                </template>
+                            </TypewriterInput>
+                            What is your favorite character?
+                            <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
                         </n-space>
-                        <div style="display: flex; justify-content: center; margin-top: 20px;">
-                            <n-button id="start-button" type="info" @click="playPageSentences">Start Reading!</n-button>
+                        <div style="display: flex; justify-content: center; margin-top: 8px; position: relative;">
+                            <div :style="{ width: '54%', height: '25%', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', left: '23%', borderRadius: '20px', zIndex: 101 }"></div>
+                            <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: 'calc(6px + 20%)', borderRadius: '50%', zIndex: 101 }" />
+                            <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">Start Reading!</n-button>
                         </div>
                     </n-card>
                 </div>
@@ -1175,6 +1191,22 @@ const playPageSentences = () => {
   font-style: normal;
 }
 
+.persona-card {
+    border: none !;
+    border-radius: 24px; 
+    box-shadow: 0 4px 10px 0 #000000; 
+    text-align: center; 
+    color: #FFFFFF;
+    font-family: 'BM Jua'; 
+    background-image: linear-gradient(to bottom, #261E70, #5C4ED4);
+}
+
+.n-card-header__main {
+    color: #FFFFFF !important;
+    font-family: 'Cherry Bomb' !important;
+    font-size: 24px !important;
+}
+
 #start-box {
     position: absolute;
     top: 0;
@@ -1188,6 +1220,19 @@ const playPageSentences = () => {
 }
 
 #start-button {
+    z-index: 100;
+    font-family: 'Cherry Bomb';
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4A011;
+    position: relative;
+    width: 60%;
+    height: 40px;
+    padding: 8px;
+    border-radius: 50px;
 }
 
 .container {

@@ -21,5 +21,6 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TypewriterInput: typeof import('./src/components/TypewriterInput.vue')['default']
   }
 }
