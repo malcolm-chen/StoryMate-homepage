@@ -1153,8 +1153,8 @@ const playPageSentences = () => {
                 <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '40%', position: 'relative' }">
                     <n-card title="Child's Background" size="medium" class="persona-card" :style="{ border: 'none', position: 'relative' }">
                         <div id="star-box">
-                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 1 }" />
-                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 1 }" />
+                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
+                            <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
                         </div>
                         <div id="moon-box">
                             <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
