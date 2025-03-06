@@ -1172,8 +1172,8 @@ const playPageSentences = () => {
                             <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
                         </n-space>
                         <div style="display: flex; justify-content: center; margin-top: 8px; position: relative;">
-                            <div :style="{ width: '54%', height: '25%', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', left: '23%', borderRadius: '20px', zIndex: 101 }"></div>
-                            <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: 'calc(6px + 20%)', borderRadius: '50%', zIndex: 101 }" />
+                            <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', left: '28%', borderRadius: '20px', zIndex: 101 }"></div>
+                            <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: 'calc(6px + 25%)', borderRadius: '50%', zIndex: 101 }" />
                             <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">Start Reading!</n-button>
                         </div>
                     </n-card>
@@ -1229,9 +1229,8 @@ const playPageSentences = () => {
     justify-content: center;
     background-color: #F4A011;
     position: relative;
-    width: 60%;
+    padding: 8px 42px;
     height: 40px;
-    padding: 8px;
     border-radius: 50px;
 }
 
