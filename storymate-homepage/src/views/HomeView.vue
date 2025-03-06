@@ -35,7 +35,9 @@ const scrollToDemo = () => {
   <main class="container">
     <div class="hero-body">
       <div class="row center">
-          <!-- <img src="/imgs/logo-chi2025.svg" alt="CHI 2025 Logo" class="chi-logo" /> -->
+        <img src="/imgs/logo-chi2025.svg" alt="CHI 2025 Logo" class="chi-logo" />
+      </div>
+      <div class="row center">
           <h1 style="font-size: 35px;">
               Characterizing LLM-Empowered Personalized Story-Reading and Interaction for Children: 
               <br>
@@ -43,8 +45,10 @@ const scrollToDemo = () => {
           </h1>
       </div>
       <div class="row center" style="margin-bottom: 16px;">
-        <h2 style="font-size:30px; font-weight: 400; color: #333; margin-top: 6px;">
+        <h2 style="font-size:30px; font-weight: 400; margin-top: 6px; color: #EA6D93; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <img src="/imgs/sakura.png" alt="sakura" style="width: 24px; height: 24px;" />
             [CHI'25 Accepted]
+            <img src="/imgs/sakura.png" alt="sakura" style="width: 24px; height: 24px;" />
         </h2>
       </div>
       <div class="row center author-row">
