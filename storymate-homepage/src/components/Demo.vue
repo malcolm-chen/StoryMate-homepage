@@ -1168,7 +1168,7 @@ const playPageSentences = () => {
                                     years old
                                 </template>
                             </TypewriterInput>
-                            What is your favorite character?
+                            What is your favorite character or topic?
                             <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
                         </n-space>
                         <div style="display: flex; justify-content: center; margin-top: 8px; position: relative;">
