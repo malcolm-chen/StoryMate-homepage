@@ -29,6 +29,13 @@ const scrollToDemo = () => {
     demoSection.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
+const scrollToRW = () => {
+  const rwSection = document.getElementById('rw-section');
+  if (rwSection) {
+    rwSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 </script>
 
 <template>
@@ -125,6 +132,16 @@ const scrollToDemo = () => {
         </template>
         Try Demo
       </n-button>
+      <n-button round @click="scrollToRW">
+        <template #icon>
+          <n-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+            </svg>
+          </n-icon>
+        </template>
+        Related Work
+      </n-button>
     </div>
     <div class="row center">
       <img src="../assets/teaser.png" alt="teaser" style="width: 80%; margin-bottom: 48px" />
@@ -146,6 +163,245 @@ const scrollToDemo = () => {
     </div>
     <div class="row center" id="demo-section">
         <Demo />
+    </div>
+    <div class="row center" id="rw-section">
+      <h2>Related Work</h2>
+    </div>
+    <div class="row center">
+      <n-card>
+        <h3 style="font-size: 20px; font-weight: 600;">
+          <span style="color: oklch(.623 .214 259.815); font-weight: 600;">[Accepted at EMNLP 2024]</span>
+          <br>
+          StorySparkQA: Expert-Annotated QA Pairs with Real-World Knowledge for Children's Story-Based Learning
+        </h3>
+        <div>
+          <a href="https://malcolm-chen.github.io/" style="color: oklch(.623 .214 259.815);">Jiaju Chen</a>, 
+          <a href="https://yuxuan.lu/" style="color: oklch(.623 .214 259.815);">Yuxuan Lu</a>,
+          <a href="https://shaozhang.info/" style="color: oklch(.623 .214 259.815);">Shao Zhang</a>, 
+          <a href="https://www.bingshengyao.com/" style="color: oklch(.623 .214 259.815);">Bingsheng Yao</a>,
+          Yuanzhe Dong,
+          <a href="https://ying-xu.com/" style="color: oklch(.623 .214 259.815);">Ying Xu</a>, 
+          Yunyao Li,
+          <a href="https://qianwen.info/" style="color: oklch(.623 .214 259.815);">Qianwen Wang</a>,
+          <a href="https://www.dakuowang.com/" style="color: oklch(.623 .214 259.815);">Dakuo Wang</a>,
+          <a href="https://www.yulingsun.net/" style="color: oklch(.623 .214 259.815);">Yuling Sun</a>.
+        </div>
+        <div style="display: flex; gap: 16px; margin: 16px 0;">
+          <a href="https://arxiv.org/abs/2311.09756" target="_blank">
+            <n-button round>
+              <template #icon>
+                <n-icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 16 16"
+                  >
+                    <g fill="none">
+                      <path
+                        d="M4.5 9.003a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-.166h.333a1.167 1.167 0 0 0 0-2.334H4.5zm.833 1.334H5v-.334h.333a.167.167 0 0 1 0 .334zm4.668-.835a.5.5 0 0 1 .5-.499h.998a.5.5 0 0 1 0 1h-.5v.335h.5a.5.5 0 1 1 0 1H11v.164a.5.5 0 0 1-1 .002L10 10.837L10 9.502zm-2.503-.499a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5H8a1.5 1.5 0 0 0 0-3h-.502zm.5 2v-1H8a.5.5 0 0 1 0 1h-.002zM9 2.002H4.5a1.5 1.5 0 0 0-1.5 1.5v3.582A1.5 1.5 0 0 0 2 8.5v4.003a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V8.499a1.5 1.5 0 0 0-1-1.415V6h-2.5A1.5 1.5 0 0 1 9 4.5V2.002zM3.5 7.999h9a.5.5 0 0 1 .5.5v4.003a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V8.499a.5.5 0 0 1 .5-.5zm9.206-3H10.5a.5.5 0 0 1-.5-.5V2.298L12.706 5z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                </n-icon>
+              </template>
+              Paper
+            </n-button>
+          </a>
+          <a href="https://github.com/neuhai/StorySparkQA" target="_blank">
+            <n-button round>
+              <template #icon>
+                <n-icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 496 512"
+                  >
+                    <path
+                      d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6c-3.3.3-5.6-1.3-5.6-3.6c0-2 2.3-3.6 5.2-3.6c3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9c2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9c.3 2 2.9 3.3 5.9 2.6c2.9-.7 4.9-2.6 4.6-4.6c-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2c1.6 1.6 3.9 2.3 5.2 1c1.3-1 1-3.3-.7-5.2c-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9c1.6 1 3.6.7 4.3-.7c.7-1.3-.3-2.9-2.3-3.9c-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2c2.3 2.3 5.2 2.6 6.5 1c1.3-1.3.7-4.3-1.3-6.2c-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9c1.6 2.3 4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2c-1.4-2.3-4-3.3-5.6-2z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </n-icon>
+              </template>
+              Code
+            </n-button>
+          </a>
+          <a href="https://huggingface.co/datasets/NEU-HAI/StorySparkQA" target="_blank">
+            <n-button round>
+              <template #icon>
+                <n-icon>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4m0 2c3.71 0 6 1.56 6 2s-2.29 2-6 2-6-1.56-6-2 2.29-2 6-2M6 8.27C7.38 9.34 9.55 10 12 10s4.62-.66 6-1.73V11c0 .44-2.29 2-6 2s-6-1.56-6-2V8.27M6 12.27C7.38 13.34 9.55 14 12 14s4.62-.66 6-1.73V15c0 .44-2.29 2-6 2s-6-1.56-6-2v-2.73m0 4C7.38 17.34 9.55 18 12 18s4.62-.66 6-1.73V17c0 .44-2.29 2-6 2s-6-1.56-6-2v-2.73Z"/>
+                  </svg>
+                </n-icon>
+              </template>
+              Dataset
+            </n-button>
+          </a>
+        </div>
+        <p>
+          Interactive story reading is a common parent-child activity, where parents expect to teach both language skills and real-world knowledge beyond the story. While increasing storytelling and reading systems have been developed for this activity, they often fail to infuse real-world knowledge into the conversation. This limitation can be attributed to the existing question-answering (QA) datasets used for children's education, upon which the systems are built, failing to capture the nuances of how education experts think when conducting interactive story reading activities. To bridge this gap, we design an annotation framework, empowered by existing knowledge graph to capture experts' annotations and thinking process, and leverage this framework to construct StorySparkQA dataset, which comprises 5,868 expert-annotated QA pairs with real-world knowledge. We conduct automated and human expert evaluations across various QA pair generation settings to demonstrate that our StorySparkQA can effectively support models in generating QA pairs that target real-world knowledge beyond story content.
+        </p>
+        <n-carousel 
+          effect="card"
+          style="height: 300px; cursor: pointer; touch-action: pan-y pinch-zoom;"
+          :draggable="true"
+          :touchable="true"
+          :mousewheel="true"
+          :loop="true"
+          :show-arrow="true"
+          :slides-per-view="1"
+          :space-between="20"
+          :touch-drag-ratio="1"
+          :transition-props="{ name: 'fade', duration: 100 }"
+        >
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/storyspark/dataset.png" class="carousel-img" alt="storysparkqa" />
+              <p class="carousel-caption">A datapoint from StorySparkQA.</p>
+            </div>
+          </n-carousel-item>
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/storyspark/split stats.png" class="carousel-img" alt="storysparkqa" />
+              <p class="carousel-caption">Statistics of StorySparkQA.</p>
+            </div>
+          </n-carousel-item>
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/storyspark/workflow.png" class="carousel-img" alt="storysparkqa" />
+              <p class="carousel-caption">Workflow of StorySparkQA's annotation process.</p>
+            </div>
+          </n-carousel-item>
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/storyspark/annotation.png" class="carousel-img" alt="storysparkqa" />
+              <p class="carousel-caption">The user interface of StorySparkQA's annotation framework.</p>
+            </div>
+          </n-carousel-item>
+        </n-carousel>
+      </n-card>
+      <n-card>
+        <h3 style="font-size: 20px; font-weight: 600;">
+          <span style="color: oklch(.623 .214 259.815); font-weight: 600;">[Accepted at CSCW 2024]</span>
+          <br>
+          Exploring Parent's Needs for Children-Centered AI to Support Preschoolers' Interactive Storytelling and Reading Activities
+        </h3>
+        <div>
+          <a href="https://www.yulingsun.net/" style="color: oklch(.623 .214 259.815);">Yuling Sun</a>, 
+          <a href="https://malcolm-chen.github.io/" style="color: oklch(.623 .214 259.815);">Jiaju Chen</a>, 
+          <a href="https://www.bingshengyao.com/" style="color: oklch(.623 .214 259.815);">Bingsheng Yao</a>, 
+          Jiali Liu, 
+          <a href="https://www.dakuowang.com/" style="color: oklch(.623 .214 259.815);">Dakuo Wang</a>, 
+          <a href="https://www.cse.ust.hk/~mxj/" style="color: oklch(.623 .214 259.815);">Xiaojuan Ma</a>,
+          <a href="https://yuxuan.lu/" style="color: oklch(.623 .214 259.815);">Yuxuan Lu</a>,
+          <a href="https://ying-xu.com/" style="color: oklch(.623 .214 259.815);">Ying Xu</a>, 
+          Liang He.
+        </div>
+        <div style="display: flex; gap: 16px; margin: 16px 0;">
+          <a href="https://arxiv.org/abs/2401.13804" target="_blank">
+            <n-button round>
+              <template #icon>
+                <n-icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 16 16"
+                  >
+                    <g fill="none">
+                      <path
+                        d="M4.5 9.003a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-.166h.333a1.167 1.167 0 0 0 0-2.334H4.5zm.833 1.334H5v-.334h.333a.167.167 0 0 1 0 .334zm4.668-.835a.5.5 0 0 1 .5-.499h.998a.5.5 0 0 1 0 1h-.5v.335h.5a.5.5 0 1 1 0 1H11v.164a.5.5 0 0 1-1 .002L10 10.837L10 9.502zm-2.503-.499a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5H8a1.5 1.5 0 0 0 0-3h-.502zm.5 2v-1H8a.5.5 0 0 1 0 1h-.002zM9 2.002H4.5a1.5 1.5 0 0 0-1.5 1.5v3.582A1.5 1.5 0 0 0 2 8.5v4.003a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V8.499a1.5 1.5 0 0 0-1-1.415V6h-2.5A1.5 1.5 0 0 1 9 4.5V2.002zM3.5 7.999h9a.5.5 0 0 1 .5.5v4.003a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V8.499a.5.5 0 0 1 .5-.5zm9.206-3H10.5a.5.5 0 0 1-.5-.5V2.298L12.706 5z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                </n-icon>
+              </template>
+              Paper
+            </n-button>
+          </a>
+        </div>
+        <p>
+          Interactive storytelling is vital for preschooler development. While children's interactive partners have traditionally been their parents and teachers, recent advances in artificial intelligence (AI) have sparked a surge of AI-based storytelling and reading technologies. As these technologies become increasingly ubiquitous in preschoolers' lives, questions arise regarding how they function in practical storytelling and reading scenarios and, how parents, the most critical stakeholders, experience and perceive these technologies. This paper investigates these questions through a qualitative study with 17 parents of children aged 3-6. Our findings suggest that even though AI-based storytelling and reading technologies provide more immersive and engaging interaction, they still cannot meet parents' expectations due to a series of interactive and algorithmic challenges. We elaborate on these challenges and discuss the possible implications of future AI-based interactive storytelling technologies for preschoolers.
+        </p>
+        <n-carousel>
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/cscw/tools.png" style="max-height: 500px; margin-top: 12px;" alt="tools" />
+              <p class="carousel-caption">Some AI-based storytelling technologies reported by participants.</p>
+            </div>
+          </n-carousel-item>
+        </n-carousel>
+      </n-card>
+      <n-card>
+        <h3 style="font-size: 20px; font-weight: 600;">
+          <span style="color: oklch(.623 .214 259.815); font-weight: 600;">[Accepted at CHI2025]</span>
+          <br>
+          Live-Streaming-Based Dual-Teacher Classes for Equitable Education: Insights and Challenges From Local Teachers' Perspective in Disadvantaged Areas
+        </h3>
+        <div>
+          <a href="https://www.yulingsun.net/" style="color: oklch(.623 .214 259.815);">Yuling Sun</a>, 
+          <a href="https://malcolm-chen.github.io/" style="color: oklch(.623 .214 259.815);">Jiaju Chen</a>, 
+          Xiaomu Zhou,
+          <a href="https://www.cse.ust.hk/~mxj/" style="color: oklch(.623 .214 259.815);">Xiaojuan Ma</a>,
+          <a href="https://www.bingshengyao.com/" style="color: oklch(.623 .214 259.815);">Bingsheng Yao</a>, 
+          Kai Zhang, Liang He,
+          <a href="https://www.dakuowang.com/" style="color: oklch(.623 .214 259.815);">Dakuo Wang</a>.
+        </div>
+        <div style="display: flex; gap: 16px; margin: 16px 0;">
+          <a href="https://arxiv.org/abs/2401.13799" target="_blank">
+            <n-button round>
+              <template #icon>
+                <n-icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 16 16"
+                  >
+                    <g fill="none">
+                      <path
+                        d="M4.5 9.003a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-.166h.333a1.167 1.167 0 0 0 0-2.334H4.5zm.833 1.334H5v-.334h.333a.167.167 0 0 1 0 .334zm4.668-.835a.5.5 0 0 1 .5-.499h.998a.5.5 0 0 1 0 1h-.5v.335h.5a.5.5 0 1 1 0 1H11v.164a.5.5 0 0 1-1 .002L10 10.837L10 9.502zm-2.503-.499a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5H8a1.5 1.5 0 0 0 0-3h-.502zm.5 2v-1H8a.5.5 0 0 1 0 1h-.002zM9 2.002H4.5a1.5 1.5 0 0 0-1.5 1.5v3.582A1.5 1.5 0 0 0 2 8.5v4.003a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V8.499a1.5 1.5 0 0 0-1-1.415V6h-2.5A1.5 1.5 0 0 1 9 4.5V2.002zM3.5 7.999h9a.5.5 0 0 1 .5.5v4.003a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V8.499a.5.5 0 0 1 .5-.5zm9.206-3H10.5a.5.5 0 0 1-.5-.5V2.298L12.706 5z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                </n-icon>
+              </template>
+              Paper
+            </n-button>
+          </a>
+        </div>
+        <p>
+          Educational inequalities in disadvantaged areas have long been a global concern. While Information and Communication Tech- nologies (ICTs) have shown great potential in addressing this is- sue, the unique challenges in disadvantaged areas often hinder the practical effectiveness of such technologies. This paper exam- ines live-streaming-based dual-teacher classes (LSDC) through a qualitative study in disadvantaged regions of China. Our findings indicate that, although LSDC offers students in these regions access to high-quality educational resources, its practical implementation is fraught with challenges. Specifically, we foreground the pivotal role of local teachers in mitigating these challenges. Through a series of situated efforts, local teachers contextualize high-quality lectures to the local classroom environment, ensuring the expected educational outcomes. Based on our findings, we argue that greater recognition and support for the situational practices of local teach- ers is essential for fostering a more equitable, sustainable, and scalable technology-driven educational model in disadvantaged areas.
+        </p>
+        <n-carousel
+          effect="card"
+          style="height: 300px; cursor: pointer; touch-action: pan-y pinch-zoom;"
+          :draggable="true"
+          :touchable="true"
+          :mousewheel="true"
+          :loop="true"
+          :show-arrow="true"
+          :slides-per-view="1"
+          :space-between="20"
+          :touch-drag-ratio="1"
+          :transition-props="{ name: 'fade', duration: 100 }"
+        >
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/lsdc/onescreen.png" class="carousel-img" alt="tools" />
+              <p class="carousel-caption">One Screen Initiative in China.</p>
+            </div>
+          </n-carousel-item>
+          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+            <div class="carousel-item-content">
+              <img src="../assets/lsdc/sketches.png" class="carousel-img" alt="tools" />
+              <p class="carousel-caption">The sketches of live-streaming-based dual-teacher classes (LSDC).</p>
+            </div>
+          </n-carousel-item>
+        </n-carousel>
+      </n-card>
     </div>
     <div class="row center">
       <div class="citation">
@@ -297,5 +553,65 @@ h1 {
     align-items: center;
     gap: 8px;
     padding: 0 16px;
+}
+
+.carousel-img {
+  margin: 0 auto;
+  height: 240px;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.carousel-caption {
+  font-size: 14px;
+  font-weight: 500;
+  color: #424242;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.carousel-item-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+:deep(.n-carousel.n-carousel--card) {
+  .n-carousel__dots {
+    bottom: -20px;
+  }
+  
+  .n-carousel__arrow {
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .n-carousel__slides {
+    touch-action: pan-y pinch-zoom;
+    
+    .n-carousel__slide {
+      touch-action: pan-y pinch-zoom;
+      user-select: none;
+      -webkit-user-drag: none;
+      
+      &:not(.n-carousel__slide--current) {
+        opacity: 0.13;
+        filter: blur(1px);
+      }
+    }
+  }
 }
 </style>

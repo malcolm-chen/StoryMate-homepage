@@ -4,7 +4,7 @@ import { WavRecorder, WavStreamPlayer } from '../lib/wavtools/index';
 import { RealtimeClient } from '@openai/realtime-api-beta';
 import { NIcon, NButton, NAvatar } from 'naive-ui';
 import { LoadingOutlined } from "@vicons/antd";
-import { PlayCircle, PauseCircle, ChevronCircleUp, ChevronCircleDown, MinusCircle } from "@vicons/fa";
+import { PlayCircle, PauseCircle, ChevronCircleUp, ChevronCircleDown, MinusCircle, Github } from "@vicons/fa";
 import { CloseCircle } from "@vicons/ionicons5";
 import { AVWaveform } from "vue-audio-visual";
 import AudioWave from './AudioWave.vue';
@@ -1046,142 +1046,147 @@ const playPageSentences = () => {
 </script>
 
 <template>
-    <div class="demo-container" :class="{ 'disabled': isContainerDisabled }">
-        <n-tag type="info" :style="{ marginTop: '10px', marginBottom: '10px', zIndex: 103 }">
-            Remaining Requests: {{ remainingRequests }}
-        </n-tag>
-        <div v-if="isContainerDisabled" class="disabled-message">
-            <p>You have used all your available requests 🖐️</p>
+    <div class="demo-container-wrapper" :style="{ position: 'relative' }">
+        <div class="demo-container" :class="{ 'disabled': isContainerDisabled }">
+            <n-tag type="info" :style="{ marginTop: '10px', marginBottom: '10px', zIndex: 103 }">
+                Remaining Requests: {{ remainingRequests }}
+            </n-tag>
+            <div class="main-container" :class="{ 'disabled': isContainerDisabled }">
+                <div v-if="isContainerDisabled" class="disabled-overlay">
+                </div>
+                <div class="header">
+                    <h3 class="header-title">Why Frogs are Wet?</h3>
+                </div>
+                <div id='main-container'>
+                    <div id="start-box" v-if="isStartButtonVisible" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', zIndex: 101 }">
+                        <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', maxHeight: '100%', position: 'relative' }">
+                            <!-- <div id="star-box">
+                                    <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
+                                    <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
+                            </div> -->
+                            <n-card title="Child's Background" size="small" class="persona-card" :style="{ border: 'none', position: 'relative' }">
+                                <div id="moon-box">
+                                    <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
+                                </div>
+                                <n-space vertical style="text-align: left; z-index: 100;">
+                                    What should I call you?
+                                    <TypewriterInput v-model="childName" round placeholder="Emma" required :validateField="validateFields" />
+                                    How old are you?
+                                    <TypewriterInput v-model="childAge" round placeholder="6" required :validateField="validateFields">
+                                        <template #suffix>
+                                            years old
+                                        </template>
+                                    </TypewriterInput>
+                                    What is your favorite character or topic?
+                                    <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
+                                    <div style="display: flex; justify-content: center; position: relative;">
+                                    <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', borderRadius: '20px', zIndex: 101 }"></div>
+                                    <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">
+                                        <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%', zIndex: 101 }" />
+                                        Start Reading!
+                                    </n-button>
+                                </div>
+                                </n-space>
+                            </n-card>
+                        </div>
+                    </div>
+                    <div id='book-container'>
+                        <div id='book-content'>
+                            <div id='book-img'>
+                                <img :src="pages[currentPageRef]?.image"/>
+                            </div>
+                            <div id='bottom-box'>
+                                <div id='caption-box'>
+                                    <h4 id="caption">
+                                        {{ pages[currentPageRef]?.text[sentenceIndexRef] }}
+                                    </h4>
+                                </div>
+                                <div id='penguin-box'>
+                                    <img
+                                    src='/imgs/penguin.svg'
+                                    alt='penguin'
+                                    style='width: 88px;'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="isChatting" id='chat-container' :style="{ position: 'absolute', height: chatBoxSize.height }">
+                    <div v-if="isRecording" id='recording-layer' :style="{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '16px', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 101}"></div>
+                    <div v-if="isRecording" id='audio-visualizer' :style="{position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px', zIndex: 101}">
+                        <AudioWave />
+                    </div>
+                    <div class='chat-window'>
+                        <div v-if="chatHistoryIsEmpty" id='loading-box'>
+                            <n-icon s>
+                                <LoadingOutlined id='loading-icon' color="#7AA2E3" />
+                            </n-icon>
+                        </div>
+                        <div v-for="(msg, index) in filteredChatHistory" :key="index" :id="msg.role === 'user' ? 'user-msg' : 'chatbot-msg'">
+                            <div v-if="msg.role === 'user'" id="user-chat">
+                                <n-avatar round id='user-avatar' :style="{ backgroundColor: '#ACD793', marginRight: '8px' }">{{ childName.substring(0, 2) }}</n-avatar>
+                                <div id="msg-bubble" :style="{ backgroundColor: '#ECECEC' }">
+                                    <h4 v-if="msg.content[0].transcript !== null" level="body-lg" :style="{ margin: '0px' }">{{ msg.content[0].transcript }}</h4>
+                                    <n-icon v-else>
+                                        <LoadingOutlined id="loading-icon" size="30" color="#7AA2E3" />
+                                    </n-icon>
+                                </div>
+                            </div>
+                            <div v-else id="chatbot-chat">
+                                <img id='chatbot-avatar' src='/imgs/penguin.svg' />
+                                <div id="msg-bubble" :style="{ position: 'relative' }" @click="handleReplay(index)">
+                                    <h4 v-if="!msg.content?.[0]?.transcript?.startsWith('<')" level="body-lg" :style="{ margin: '0px', marginRight: '30px' }">
+                                        {{ msg.content?.[0]?.transcript }}
+                                    </h4>
+                                    <n-button v-if="msg.status === 'completed' && !msg.content?.[0]?.transcript?.startsWith('<')" id="replay-btn" :key="index" quaternary :style="{ position: 'absolute', right: '8px', bottom: '8px' }">
+                                        <template v-if="replayingIndex === index">
+                                            <n-icon><PauseCircle size="25" color="#2A2278" /></n-icon>
+                                        </template>
+                                        <template v-else>
+                                            <n-icon><PlayCircle size="25" color="#2A2278" /></n-icon>
+                                        </template>
+                                    </n-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="canPushToTalk && !isEnding" id='recording-box'>
+                        <div v-if="isRecording">
+                            <div id='recording-box-1'></div>
+                            <div id='recording-box-2'></div>
+                        </div>
+                        <button id='chat-input' 
+                                class='no-selection'
+                                :disabled="!isConnected || !canPushToTalk"
+                                @mousedown.left.prevent="(e) => { console.log('mousedown event triggered'); startRecording(); }"
+                                @mousedown.right.prevent
+                                @touchstart.passive.prevent="startRecording"
+                                @pointerdown.prevent="startRecording"
+                                @mouseup.left.prevent="(e) => { console.log('mouseup event triggered'); stopRecording(); }"
+                                @touchend.passive.prevent="(e) => { console.log('touchend event triggered'); stopRecording(); }"
+                                @pointerup.prevent="(e) => { console.log('pointerup event triggered'); stopRecording(); }"
+                                @contextmenu.stop.prevent
+                                @click.right.prevent
+                                :style="chatInputStyle">
+                            <h4 v-if="isRecording" :style="{ color: 'white', fontSize: '30px', fontFamily: 'Cherry Bomb' }">Talking...</h4>
+                            <div v-else>
+                                <div :style="{ width: '90%', height: '25%', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '7px', left: '3%', borderRadius: '20px' }"></div>
+                                <img src='/imgs/ring.svg' alt='ring' :style="{ width: '35px', height: '35px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%' }" />
+                                <h4 :style="{ color: 'white', fontSize: '30px', fontFamily: 'Cherry Bomb' }">Hold to talk!</h4>
+                            </div>
+                        </button>
+                    </div>
+                    <div id='moon-chat-box'>
+                        <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '0', right: '0', zIndex: -1 }" />
+                    </div>
+                </div>  
+            </div>
         </div>
-        <div class="main-container" :class="{ 'disabled': isContainerDisabled }">
-            <div v-if="isContainerDisabled" class="disabled-overlay">
-            </div>
-            <div class="header">
-                <h3 class="header-title">Why Frogs are Wet?</h3>
-            </div>
-            <div id='main-container'>
-                <div id="start-box" v-if="isStartButtonVisible" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', zIndex: 101 }">
-                    <div id="persona-box" :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', maxHeight: '100%', position: 'relative' }">
-                        <!-- <div id="star-box">
-                                <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
-                                <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
-                        </div> -->
-                        <n-card title="Child's Background" size="small" class="persona-card" :style="{ border: 'none', position: 'relative' }">
-                            <div id="moon-box">
-                                <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
-                            </div>
-                            <n-space vertical style="text-align: left; z-index: 100;">
-                                What should I call you?
-                                <TypewriterInput v-model="childName" round placeholder="Emma" required :validateField="validateFields" />
-                                How old are you?
-                                <TypewriterInput v-model="childAge" round placeholder="6" required :validateField="validateFields">
-                                    <template #suffix>
-                                        years old
-                                    </template>
-                                </TypewriterInput>
-                                What is your favorite character or topic?
-                                <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
-                                <div style="display: flex; justify-content: center; position: relative;">
-                                <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', borderRadius: '20px', zIndex: 101 }"></div>
-                                <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">
-                                    <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%', zIndex: 101 }" />
-                                    Start Reading!
-                                </n-button>
-                            </div>
-                            </n-space>
-                        </n-card>
-                    </div>
-                </div>
-                <div id='book-container'>
-                    <div id='book-content'>
-                        <div id='book-img'>
-                            <img :src="pages[currentPageRef]?.image"/>
-                        </div>
-                        <div id='bottom-box'>
-                            <div id='caption-box'>
-                                <h4 id="caption">
-                                    {{ pages[currentPageRef]?.text[sentenceIndexRef] }}
-                                </h4>
-                            </div>
-                            <div id='penguin-box'>
-                                <img
-                                src='/imgs/penguin.svg'
-                                alt='penguin'
-                                style='width: 88px;'>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div v-if="isChatting" id='chat-container' :style="{ position: 'absolute', height: chatBoxSize.height }">
-                <div v-if="isRecording" id='recording-layer' :style="{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '16px', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 101}"></div>
-                <div v-if="isRecording" id='audio-visualizer' :style="{position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px', zIndex: 101}">
-                    <AudioWave />
-                </div>
-                <div class='chat-window'>
-                    <div v-if="chatHistoryIsEmpty" id='loading-box'>
-                        <n-icon s>
-                            <LoadingOutlined id='loading-icon' color="#7AA2E3" />
-                        </n-icon>
-                    </div>
-                    <div v-for="(msg, index) in filteredChatHistory" :key="index" :id="msg.role === 'user' ? 'user-msg' : 'chatbot-msg'">
-                        <div v-if="msg.role === 'user'" id="user-chat">
-                            <n-avatar round id='user-avatar' :style="{ backgroundColor: '#ACD793', marginRight: '8px' }">{{ childName.substring(0, 2) }}</n-avatar>
-                            <div id="msg-bubble" :style="{ backgroundColor: '#ECECEC' }">
-                                <h4 v-if="msg.content[0].transcript !== null" level="body-lg" :style="{ margin: '0px' }">{{ msg.content[0].transcript }}</h4>
-                                <n-icon v-else>
-                                    <LoadingOutlined id="loading-icon" size="30" color="#7AA2E3" />
-                                </n-icon>
-                            </div>
-                        </div>
-                        <div v-else id="chatbot-chat">
-                            <img id='chatbot-avatar' src='/imgs/penguin.svg' />
-                            <div id="msg-bubble" :style="{ position: 'relative' }" @click="handleReplay(index)">
-                                <h4 v-if="!msg.content?.[0]?.transcript?.startsWith('<')" level="body-lg" :style="{ margin: '0px', marginRight: '30px' }">
-                                    {{ msg.content?.[0]?.transcript }}
-                                </h4>
-                                <n-button v-if="msg.status === 'completed' && !msg.content?.[0]?.transcript?.startsWith('<')" id="replay-btn" :key="index" quaternary :style="{ position: 'absolute', right: '8px', bottom: '8px' }">
-                                    <template v-if="replayingIndex === index">
-                                        <n-icon><PauseCircle size="25" color="#2A2278" /></n-icon>
-                                    </template>
-                                    <template v-else>
-                                        <n-icon><PlayCircle size="25" color="#2A2278" /></n-icon>
-                                    </template>
-                                </n-button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-if="canPushToTalk && !isEnding" id='recording-box'>
-                    <div v-if="isRecording">
-                        <div id='recording-box-1'></div>
-                        <div id='recording-box-2'></div>
-                    </div>
-                    <button id='chat-input' 
-                            class='no-selection'
-                            :disabled="!isConnected || !canPushToTalk"
-                            @mousedown.left.prevent="(e) => { console.log('mousedown event triggered'); startRecording(); }"
-                            @mousedown.right.prevent
-                            @touchstart.passive.prevent="startRecording"
-                            @pointerdown.prevent="startRecording"
-                            @mouseup.left.prevent="(e) => { console.log('mouseup event triggered'); stopRecording(); }"
-                            @touchend.passive.prevent="(e) => { console.log('touchend event triggered'); stopRecording(); }"
-                            @pointerup.prevent="(e) => { console.log('pointerup event triggered'); stopRecording(); }"
-                            @contextmenu.stop.prevent
-                            @click.right.prevent
-                            :style="chatInputStyle">
-                        <h4 v-if="isRecording" :style="{ color: 'white', fontSize: '30px', fontFamily: 'Cherry Bomb' }">Talking...</h4>
-                        <div v-else>
-                            <div :style="{ width: '90%', height: '25%', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '7px', left: '3%', borderRadius: '20px' }"></div>
-                            <img src='/imgs/ring.svg' alt='ring' :style="{ width: '35px', height: '35px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%' }" />
-                            <h4 :style="{ color: 'white', fontSize: '30px', fontFamily: 'Cherry Bomb' }">Hold to talk!</h4>
-                        </div>
-                    </button>
-                </div>
-                <div id='moon-chat-box'>
-                    <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '0', right: '0', zIndex: -1 }" />
-                </div>
-            </div>  
+        <div v-if="isContainerDisabled" class="disabled-message">
+            <h4 style="font-size: 20px; color: #333; margin-bottom: 10px; font-weight: 500;">Thank you for your interest!</h4>
+            You have used all available requests. 
+            If you are interested, please contact us at <a href="mailto:jiajuchen89@gmail.com">jiajuchen89@gmail.com</a> to discuss how we can collaborate!
+            To explore more, check out <a href="https://github.com/neuhai/storymate"><n-icon size="15" style="vertical-align: middle;"><Github /></n-icon> our GitHub repo</a>.
         </div>
     </div>
 </template>
@@ -1579,34 +1584,39 @@ const playPageSentences = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 100;
 }
 
 .disabled-message {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    text-align: left;
+    z-index: 1000;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1002;
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-}
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
 
-.disabled-message h2 {
-    color: #2A2278;
-    margin-bottom: 1rem;
-    font-family: 'Cherry Bomb';
-}
+    a {
+        color: #18a058;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+        pointer-events: auto;
+        cursor: pointer;
+        display: inline-block;
 
-.disabled-message p {
-    color: #000000;
-    font-family: 'BM Jua';
-    font-size: 1.1rem;
+        &:hover {
+            color: #0c7a43;
+            text-decoration: underline;
+        }
+    }
 }
 
 #user-avatar {
