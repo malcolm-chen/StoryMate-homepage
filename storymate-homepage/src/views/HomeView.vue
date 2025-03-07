@@ -77,7 +77,7 @@ const scrollToRW = () => {
         <div class="affiliation"><sup>5</sup>Harvard University</div>
       </div>
       <div class="row center">
-        <pre>jiaj.chen@northeastern.edu</pre>
+        <pre>10205102450@stu.ecnu.edu.cn</pre>
         <pre>ylsun@cs.ecnu.edu.cn</pre>
       </div>
     </div>
@@ -143,13 +143,32 @@ const scrollToRW = () => {
         Related Work
       </n-button>
     </div>
-    <div class="row center">
-      <img src="../assets/teaser.png" alt="teaser" style="width: 80%; margin-bottom: 48px" />
+    <div class="row center flex-wrap">
+      <div class="flex-0" style="flex-basis: 300px">
+        <img src="@/assets/arxiv.png" alt="teaser" style="width: 100%" />
+      </div>
+      <div class="flex-1 bg-gray-100 p-4 rounded-lg" style="flex-basis: 600px; max-width: 100%">
+        <p class="text-lg text-align-left">
+          Personalized interaction is highly valued by parents in their story-reading activities with children. While AI-empowered story-reading tools have been increasingly used, their abilities to support personalized interaction with children are still limited. Recent advances in large language models (LLMs) show promise in facilitating personalized interactions, but little is known about how to effectively and appropriately use LLMs to enhance children's personalized story-reading experiences. This work explores this question through a design-based study. Drawing on a formative study, we designed and developed <span style="font-weight: 1000;">StoryMate</span>, an LLM-empowered personalized interactive story-reading tool for children, following an empirical study with children, parents, and education experts. Our participants valued the personalized features in StoryMate, and also highlighted the need to support personalized content, guiding mechanisms, reading context variations, and interactive interfaces. Based on these findings, we propose a series of design recommendations for better using LLMs to empower children's personalized story reading and interaction.
+        </p>
+      </div>
     </div>
     <div class="row center">
-      <p class="text-lg text-justify">
-        Personalized interaction is highly valued by parents in their story-reading activities with children. While AI-empowered story-reading tools have been increasingly used, their abilities to support personalized interaction with children are still limited. Recent advances in large language models (LLMs) show promise in facilitating personalized interactions, but little is known about how to effectively and appropriately use LLMs to enhance children's personalized story-reading experiences. This work explores this question through a design-based study. Drawing on a formative study, we designed and developed StoryMate, an LLM-empowered personalized interactive story-reading tool for children, following an empirical study with children, parents, and education experts. Our participants valued the personalized features in StoryMate, and also highlighted the need to support personalized content, guiding mechanisms, reading context variations, and interactive interfaces. Based on these findings, we propose a series of design recommendations for better using LLMs to empower children's personalized story reading and interaction.
-      </p>
+      <img src="../assets/teaser.png" alt="teaser" style="width: 80%;" />
+    </div>
+    <div class="row center text-lg text-align-left bg-gray-100 p-4 rounded-lg">
+      <div style="padding: 10px 0; ">
+        <p>
+          <span style="font-weight: 1000;">StoryMate</span> is a interactive story-reading tool that uses Large Language Model
+          (LLMs) to provide personalized story reading and interaction for children. Specifically, it has four main features:
+        </p>
+        <ul style="list-style-type: disc; margin-left: 30px;">
+          <li>Customizable reading content and modes.</li>
+          <li>Child-appropriate, adaptive, and personalized interaction.</li>
+          <li>Embedded attention-getting mechanisms.</li>
+          <li>RAG-based guided conversation for active thinking.</li>
+        </ul>
+      </div>
     </div>
     <div class="row center">
         <h2>
