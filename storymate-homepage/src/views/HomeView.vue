@@ -565,7 +565,7 @@ h1 {
   .copy-button {
     font-size: 24px;
     position: absolute;
-    top: calc(1.6 * 24px + 16px + 10px + 26px);
+    top: calc(1.6 * 24px + 16px + 10px + 30px);
     right: 10px;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -583,7 +583,7 @@ h1 {
   .copy-button-2 {
     font-size: 24px;
     position: absolute;
-    top: calc(10px + 26px);
+    top: calc(10px + 30px);
     right: 10px;
     &:hover {
       background-color: #e0e0e0;
