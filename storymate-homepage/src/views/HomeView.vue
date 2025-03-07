@@ -77,7 +77,7 @@ const scrollToRW = () => {
         <div class="affiliation"><sup>5</sup>Harvard University</div>
       </div>
       <div class="row center">
-        <pre>jiajuchen89@gmail.com</pre>
+        <pre>jiaj.chen@northeastern.edu</pre>
         <pre>ylsun@cs.ecnu.edu.cn</pre>
       </div>
     </div>

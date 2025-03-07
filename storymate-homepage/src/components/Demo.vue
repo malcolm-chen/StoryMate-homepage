@@ -1185,7 +1185,7 @@ const playPageSentences = () => {
         <div v-if="isContainerDisabled" class="disabled-message">
             <h4 style="font-size: 20px; color: #333; margin-bottom: 10px; font-weight: 500;">Thank you for your interest!</h4>
             You have used all available requests. 
-            If you are interested, please contact us at <a href="mailto:jiajuchen89@gmail.com">jiajuchen89@gmail.com</a> to discuss how we can collaborate!
+            If you are interested, please contact us at <a href="mailto:jiaj.chen@northeastern.edu">jiaj.chen@northeastern.edu</a> to discuss how we can collaborate!
             To explore more, check out <a href="https://github.com/neuhai/storymate"><n-icon size="15" style="vertical-align: middle;"><Github /></n-icon> our GitHub repo</a>.
         </div>
     </div>
