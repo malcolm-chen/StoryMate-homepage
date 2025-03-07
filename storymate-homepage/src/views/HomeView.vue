@@ -441,12 +441,17 @@ const scrollToRW = () => {
       <div class="citation">
         <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">✨ StorySparkQA</h4>
         <pre class="citation-text" ref="citationText">
-@inproceedings{Chen2023StorySparkQAEQ,
-  title={StorySparkQA: Expert-Annotated QA Pairs with Real-World Knowledge for Children’s Story-Based Learning},
-  author={Jiaju Chen and Yuxuan Lu and Shao Zhang and Bingsheng Yao and Yuanzhe Dong and Ying Xu and Yunyao Li and Qianwen Wang and Dakuo Wang and Yuling Sun},
-  booktitle={Conference on Empirical Methods in Natural Language Processing},
-  year={2023},
-  url={https://api.semanticscholar.org/CorpusID:265221357}
+@inproceedings{chen-etal-2024-storysparkqa,
+  title = "{S}tory{S}park{QA}: Expert-Annotated {QA} Pairs with Real-World Knowledge for Children`s Story-Based Learning",
+  author = "Chen, Jiaju and Lu, Yuxuan and Zhang, Shao and Yao, Bingsheng and Dong, Yuanzhe and Xu, Ying and Li, Yunyao and Wang, Qianwen and Wang, Dakuo and Sun, Yuling",
+  booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
+  month = nov,
+  year = "2024",
+  address = "Miami, Florida, USA",
+  publisher = "Association for Computational Linguistics",
+  url = "https://aclanthology.org/2024.emnlp-main.961/",
+  doi = "10.18653/v1/2024.emnlp-main.961",
+  pages = "17351--17370",
 }</pre>
         <n-button quaternary circle size="tiny" class="copy-button-2" @click="copyCitation">
           <template #icon>
