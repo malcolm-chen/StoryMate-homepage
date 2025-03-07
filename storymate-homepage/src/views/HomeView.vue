@@ -336,7 +336,7 @@ const scrollToRW = () => {
       </n-card>
       <n-card>
         <h3 style="font-size: 20px; font-weight: 600;">
-          <span style="color: oklch(.623 .214 259.815); font-weight: 600;">[Accepted at CHI2025]</span>
+          <span style="color: oklch(.623 .214 259.815); font-weight: 600;">[Accepted at CHI 2025]</span>
           <br>
           Live-Streaming-Based Dual-Teacher Classes for Equitable Education: Insights and Challenges From Local Teachers' Perspective in Disadvantaged Areas
         </h3>
