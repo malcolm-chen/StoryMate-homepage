@@ -406,6 +406,7 @@ const scrollToRW = () => {
     <div class="row center">
       <div class="citation">
         <h3>Citation</h3>
+        <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">🐧 StoryMate</h4>
         <pre class="citation-text" ref="citationText">
 @inproceedings{chen2025storymate,
   author    = {Jiaju Chen and Minglong Tang and Yuxuan Lu and Bingsheng Yao and Elissa Fan and Xiaojuan Ma and Ying Xu and Dakuo Wang and Yuling Sun and Liang He},
@@ -418,7 +419,36 @@ const scrollToRW = () => {
   doi       = {10.1145/3706598.3713275},
   isbn      = {979-8-4007-1394-1},
 }</pre>
-        <n-button quaternary circle size="tiny" class="copy-button" @click="copyCitation">
+        <n-button quaternary circle size="tiny" class="copy-button"  @click="copyCitation">
+          <template #icon>
+            <n-icon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </n-icon>
+          </template>
+        </n-button>
+      </div> 
+    </div>
+    <div class="row center">
+      <div class="citation">
+        <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">✨ StorySparkQA</h4>
+        <pre class="citation-text" ref="citationText">
+@inproceedings{Chen2023StorySparkQAEQ,
+  title={StorySparkQA: Expert-Annotated QA Pairs with Real-World Knowledge for Children’s Story-Based Learning},
+  author={Jiaju Chen and Yuxuan Lu and Shao Zhang and Bingsheng Yao and Yuanzhe Dong and Ying Xu and Yunyao Li and Qianwen Wang and Dakuo Wang and Yuling Sun},
+  booktitle={Conference on Empirical Methods in Natural Language Processing},
+  year={2023},
+  url={https://api.semanticscholar.org/CorpusID:265221357}
+}</pre>
+        <n-button quaternary circle size="tiny" class="copy-button-2" @click="copyCitation">
           <template #icon>
             <n-icon>
               <svg
@@ -530,11 +560,26 @@ h1 {
   .copy-button {
     font-size: 24px;
     position: absolute;
-    top: calc(1.6 * 24px + 16px + 10px);
+    top: calc(1.6 * 24px + 16px + 10px + 26px);
     right: 10px;
     cursor: pointer;
     transition: background-color 0.2s;
 
+    &:hover {
+      background-color: #e0e0e0;
+    }
+
+    &.copied {
+      background-color: #4caf50;
+      color: white;
+    }
+  }
+
+  .copy-button-2 {
+    font-size: 24px;
+    position: absolute;
+    top: calc(10px + 26px);
+    right: 10px;
     &:hover {
       background-color: #e0e0e0;
     }
