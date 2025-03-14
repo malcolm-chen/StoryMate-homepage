@@ -6,6 +6,10 @@ import { ref } from 'vue'
 const citationText = ref<HTMLPreElement | null>(null)
 const isCopied = ref(false)
 
+const openLink = (url: string) => {
+  window.open(url, '_blank')
+}
+
 const copyCitation = () => {
   if (citationText.value?.textContent) {
     const text = citationText.value.textContent
@@ -83,7 +87,7 @@ const scrollToRW = () => {
     </div>
       <div class="row center" style="margin-top: 48px; margin-bottom: 48px;">
       <a href="https://arxiv.org/abs/2503.00590" target="_blank">
-        <n-button round>
+        <n-button round type="info">
           <template #icon>
             <n-icon>
               <svg
@@ -104,7 +108,7 @@ const scrollToRW = () => {
         </n-button>
       </a>
       <a href="https://github.com/neuhai/storymate" target="_blank">
-        <n-button round>
+        <n-button round type="info">
           <template #icon>
             <n-icon>
               <svg
@@ -122,7 +126,7 @@ const scrollToRW = () => {
           Code
         </n-button>
       </a>
-      <n-button round @click="scrollToDemo">
+      <n-button round type="info" @click="scrollToDemo">
         <template #icon>
           <n-icon>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -132,7 +136,7 @@ const scrollToRW = () => {
         </template>
         Try Demo
       </n-button>
-      <n-button round @click="scrollToRW">
+      <n-button round type="info" @click="scrollToRW">
         <template #icon>
           <n-icon>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -154,7 +158,17 @@ const scrollToRW = () => {
       </div>
     </div>
     <div class="row center">
-      <img src="../assets/teaser.png" alt="teaser" style="width: 80%;" />
+        <h2>
+            StoryMate's Demo
+        </h2>
+    </div>
+    <div class="row center">
+        <p style="font-size: 18px; font-weight: 300; color: #333;">
+            We have updated StoryMate's UI with faster response 😎 Imagine your self as a kid and try our demo!
+        </p>
+    </div>
+    <div class="row center" id="demo-section">
+        <Demo />
     </div>
     <div class="row center text-lg text-align-left bg-gray-100 p-4 rounded-lg">
       <div style="padding: 10px 0; ">
@@ -170,21 +184,8 @@ const scrollToRW = () => {
         </ul>
       </div>
     </div>
-    <div class="row center">
-        <h2>
-            StoryMate's Demo
-        </h2>
-    </div>
-    <div class="row center">
-        <p style="font-size: 18px; font-weight: 300; color: #333;">
-            We have updated StoryMate with a new UI with faster response 😎 Try it out!
-        </p>
-    </div>
-    <div class="row center" id="demo-section">
-        <Demo />
-    </div>
     <div class="row center" id="rw-section">
-      <h2>Related Work</h2>
+      <h2>Check out our related work</h2>
     </div>
     <div class="row center">
       <n-card>
@@ -207,7 +208,7 @@ const scrollToRW = () => {
         </div>
         <div style="display: flex; gap: 16px; margin: 16px 0;">
           <a href="https://arxiv.org/abs/2311.09756" target="_blank">
-            <n-button round>
+            <n-button round type="info">
               <template #icon>
                 <n-icon>
                   <svg
@@ -228,7 +229,7 @@ const scrollToRW = () => {
             </n-button>
           </a>
           <a href="https://github.com/neuhai/StorySparkQA" target="_blank">
-            <n-button round>
+            <n-button round type="info">
               <template #icon>
                 <n-icon>
                   <svg
@@ -247,7 +248,7 @@ const scrollToRW = () => {
             </n-button>
           </a>
           <a href="https://huggingface.co/datasets/NEU-HAI/StorySparkQA" target="_blank">
-            <n-button round>
+            <n-button round type="info">
               <template #icon>
                 <n-icon>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -259,14 +260,13 @@ const scrollToRW = () => {
             </n-button>
           </a>
         </div>
-        <p>
+        <p class="flex-1 bg-gray-100 p-4 rounded-lg" >
           Interactive story reading is a common parent-child activity, where parents expect to teach both language skills and real-world knowledge beyond the story. While increasing storytelling and reading systems have been developed for this activity, they often fail to infuse real-world knowledge into the conversation. This limitation can be attributed to the existing question-answering (QA) datasets used for children's education, upon which the systems are built, failing to capture the nuances of how education experts think when conducting interactive story reading activities. To bridge this gap, we design an annotation framework, empowered by existing knowledge graph to capture experts' annotations and thinking process, and leverage this framework to construct StorySparkQA dataset, which comprises 5,868 expert-annotated QA pairs with real-world knowledge. We conduct automated and human expert evaluations across various QA pair generation settings to demonstrate that our StorySparkQA can effectively support models in generating QA pairs that target real-world knowledge beyond story content.
         </p>
         <n-carousel 
           effect="card"
           style="height: 300px; cursor: pointer; touch-action: pan-y pinch-zoom;"
           :draggable="true"
-          :touchable="true"
           :mousewheel="true"
           :loop="true"
           :show-arrow="true"
@@ -276,25 +276,25 @@ const scrollToRW = () => {
           :transition-props="{ name: 'fade', duration: 100 }"
         >
           <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
-            <div class="carousel-item-content">
+            <div class="carousel-item-content" @click="openLink('https://arxiv.org/abs/2311.09756')">
               <img src="../assets/storyspark/dataset.png" class="carousel-img" alt="storysparkqa" />
               <p class="carousel-caption">A datapoint from StorySparkQA.</p>
             </div>
           </n-carousel-item>
           <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
-            <div class="carousel-item-content">
+            <div class="carousel-item-content" @click="openLink('https://arxiv.org/abs/2311.09756')">
               <img src="../assets/storyspark/split stats.png" class="carousel-img" alt="storysparkqa" />
               <p class="carousel-caption">Statistics of StorySparkQA.</p>
             </div>
           </n-carousel-item>
           <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
-            <div class="carousel-item-content">
+            <div class="carousel-item-content" @click="openLink('https://arxiv.org/abs/2311.09756')">
               <img src="../assets/storyspark/workflow.png" class="carousel-img" alt="storysparkqa" />
               <p class="carousel-caption">Workflow of StorySparkQA's annotation process.</p>
             </div>
           </n-carousel-item>
           <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
-            <div class="carousel-item-content">
+            <div class="carousel-item-content" @click="openLink('https://arxiv.org/abs/2311.09756')">
               <img src="../assets/storyspark/annotation.png" class="carousel-img" alt="storysparkqa" />
               <p class="carousel-caption">The user interface of StorySparkQA's annotation framework.</p>
             </div>
@@ -320,7 +320,7 @@ const scrollToRW = () => {
         </div>
         <div style="display: flex; gap: 16px; margin: 16px 0;">
           <a href="https://arxiv.org/abs/2401.13804" target="_blank">
-            <n-button round>
+            <n-button round type="info">
               <template #icon>
                 <n-icon>
                   <svg
@@ -346,7 +346,7 @@ const scrollToRW = () => {
         </p>
         <n-carousel>
           <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
-            <div class="carousel-item-content">
+            <div class="carousel-item-content" @click="openLink('https://arxiv.org/abs/2401.13804')">
               <img src="../assets/cscw/tools.png" style="max-height: 500px; margin-top: 12px;" alt="tools" />
               <p class="carousel-caption">Some AI-based storytelling technologies reported by participants.</p>
             </div>
@@ -370,7 +370,7 @@ const scrollToRW = () => {
         </div>
         <div style="display: flex; gap: 16px; margin: 16px 0;">
           <a href="https://arxiv.org/abs/2401.13799" target="_blank">
-            <n-button round>
+            <n-button round type="info">
               <template #icon>
                 <n-icon>
                   <svg
@@ -391,7 +391,7 @@ const scrollToRW = () => {
             </n-button>
           </a>
         </div>
-        <p>
+        <p class="flex-1 bg-gray-100 p-4 rounded-lg" >
           Educational inequalities in disadvantaged areas have long been a global concern. While Information and Communication Tech- nologies (ICTs) have shown great potential in addressing this is- sue, the unique challenges in disadvantaged areas often hinder the practical effectiveness of such technologies. This paper exam- ines live-streaming-based dual-teacher classes (LSDC) through a qualitative study in disadvantaged regions of China. Our findings indicate that, although LSDC offers students in these regions access to high-quality educational resources, its practical implementation is fraught with challenges. Specifically, we foreground the pivotal role of local teachers in mitigating these challenges. Through a series of situated efforts, local teachers contextualize high-quality lectures to the local classroom environment, ensuring the expected educational outcomes. Based on our findings, we argue that greater recognition and support for the situational practices of local teach- ers is essential for fostering a more equitable, sustainable, and scalable technology-driven educational model in disadvantaged areas.
         </p>
         <n-carousel
@@ -407,13 +407,13 @@ const scrollToRW = () => {
           :touch-drag-ratio="1"
           :transition-props="{ name: 'fade', duration: 100 }"
         >
-          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+          <n-carousel-item  @click="openLink('https://arxiv.org/abs/2401.13799')" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
             <div class="carousel-item-content">
               <img src="../assets/lsdc/onescreen.png" class="carousel-img" alt="tools" />
               <p class="carousel-caption">One Screen Initiative in China.</p>
             </div>
           </n-carousel-item>
-          <n-carousel-item style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
+          <n-carousel-item  @click="openLink('https://arxiv.org/abs/2401.13799')" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px;">
             <div class="carousel-item-content">
               <img src="../assets/lsdc/sketches.png" class="carousel-img" alt="tools" />
               <p class="carousel-caption">The sketches of live-streaming-based dual-teacher classes (LSDC).</p>

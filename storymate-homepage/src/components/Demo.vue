@@ -48,10 +48,13 @@ const recorderControls = ref({});
 const canPushToTalk = ref(true);
 const isEnding = ref(false);
 
+const citationText = ref<HTMLPreElement | null>(null)
+const isCopied = ref(false)
+
 // Add refs for child information
-const childName = ref('');
-const childAge = ref('');
-const childInterests = ref('');
+const childName = ref('Emma');
+const childAge = ref('6');
+const childInterests = ref('Snow White');
 const validateFields = ref(false);
 
 // Change remainingRequests to be a ref
@@ -299,7 +302,6 @@ const playPageSentences = () => {
         - <eval>child asks question
         - <eval>off-topic
         `;
-        console.log(instruction4Evaluation);
         return instruction4Evaluation;
     }
 
@@ -315,7 +317,7 @@ const playPageSentences = () => {
         - Concept Word: ${knowledge.value[currentPageRef.value]?.keyword}
         - Learning Objective: ${knowledge.value[currentPageRef.value]?.learning_objective}
         - Core Idea: ${knowledge.value[currentPageRef.value]?.core_idea.map(idea => `${idea.knowledge}`).join('\n')}
-        - First Question: ${knowledge.value[currentPageRef.value]?.example_nonrecall_questions[0]}
+        - First Question for your consideration: ${knowledge.value[currentPageRef.value]?.example_nonrecall_questions[0]}
 
         **Child Information**:
         - Child Name: ${childName.value}
@@ -325,7 +327,9 @@ const playPageSentences = () => {
         **Instructions for Initiating the Conversation**:
         - Begin the interaction by posing the first question, which will guide to the concept word.
         - You should use different ways to open the conversation. For example: "Hmm, this part of the story is so interesting! + first question"; "Hey xxx, share with me what you think + first question"; "xxx, let's chat about what you just read! + first question"; etc. 
-        - You should NOT directly use the provided question. You should tailor the first question to the child's age and interests. For instance, you can set a scene and embed the child's favorite character in the posed question.
+        - You should NOT directly use the provided question. You should tailor the first question to the child's age and interests. 
+            For instance, you can set a scene and embed the child's favorite character in the posed question.
+            You should also modify the question content to align the difficulty to the child's age.
         - You should NOT pose a yes/no question (bad examples: "Can you tell me xxx", "Do you know xxx?", "Can you think of xxx").
         - Always end your first turn of conversation with a question, instead of a declarative sentence.
 
@@ -337,7 +341,6 @@ const playPageSentences = () => {
         - Avoid assuming or making up the child's response. Just wait for the child's response for each turn.
         - Keep the conversation safe, civil, and appropriate for children. Do not include any inappropriate content, such as violence, sex, drugs, etc.
         `;
-        console.log(instruction4Guiding);
         return instruction4Guiding;
     }
 
@@ -414,12 +417,9 @@ const playPageSentences = () => {
                 correctCount++;
             }
         }
-        console.log('correctCount', correctCount);
         if (correctCount === 1) {
-            console.log(instruction4Correct1);
             return instruction4Correct1;
         } else {
-            console.log(instruction4Correct2);
             return instruction4Correct2;
         }
     }
@@ -645,7 +645,6 @@ const playPageSentences = () => {
         - Speak ${audioSpeed <= 1 ? 'slower' : 'faster'} than usual (like ${audioSpeed} of your normal speed) for improved understanding by children.
         - Keep the conversation safe, civil, and appropriate for children. Do not include any inappropriate content, such as violence, sex, drugs, etc.
         `;
-        console.log(instruction4ChildQuestion);
         return instruction4ChildQuestion;
     }
 
@@ -660,7 +659,6 @@ const playPageSentences = () => {
         Since the evaluation of the child's response is 'invalid', you should respond with a friendly line (e.g., "I didn't hear your answer, can you say it again?", "Oh I didn't catch that, can you say it again?")
         - Speak ${audioSpeed <= 1 ? 'slower' : 'faster'} than usual (like ${audioSpeed} of your normal speed) for improved understanding by children.
         `;
-        console.log(instruction4Invalid);
         return instruction4Invalid;
     }
 
@@ -675,7 +673,6 @@ const playPageSentences = () => {
         Start by acknowledging the child's response (e.g., "Interesting idea!"). Then guide the conversation back to the original question you asked or conclude the interaction if the conversation has gone beyond three rounds.
         - Speak ${audioSpeed <= 1 ? 'slower' : 'faster'} than usual (like ${audioSpeed} of your normal speed) for improved understanding by children.
         `;
-        console.log(instruction4OffTopic);
         return instruction4OffTopic;
     }
 
@@ -748,7 +745,6 @@ const playPageSentences = () => {
         - If your response includes a question, you can't conclude the conversation. You need to address the question first.
         - Keep the conversation safe, civil, and appropriate for children. Do not include any inappropriate content, such as violence, sex, drugs, etc.
         `;
-        console.log(instruction4FollowUp);
         return instruction4FollowUp;
     }
 
@@ -759,7 +755,6 @@ const playPageSentences = () => {
         client.realtime.send('response.create');
         remainingRequests.value -= 1;
         localStorage.setItem('remainingRequests', remainingRequests.value);
-        console.log(instruction);
     }
 
     const setupClient = async (instruction) => {
@@ -1064,26 +1059,25 @@ const playPageSentences = () => {
                                     <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '14px', left: '90px', zIndex: 0 }" />
                                     <img src='/imgs/star.svg' alt='star' :style="{ position: 'absolute', top: '36px', right: '90px', width: '20px', height: '20px', zIndex: 0 }" />
                             </div> -->
-                            <n-card title="Child's Background" size="small" class="persona-card" :style="{ border: 'none', position: 'relative' }">
+                            <n-card title="Tell me about you!" size="small" class="persona-card" :style="{ border: 'none', position: 'relative' }">
                                 <div id="moon-box">
                                     <img src='/imgs/moon.svg' alt='moon' :style="{ position: 'absolute', bottom: '-40px', right: '0', zIndex: 1 }" />
                                 </div>
                                 <n-space vertical style="text-align: left; z-index: 100;">
                                     What should I call you?
-                                    <TypewriterInput v-model="childName" round placeholder="Emma" required :validateField="validateFields" />
+                                    <n-input v-model:value="childName" round placeholder="Emma" style="z-index: 101;" />
                                     How old are you?
-                                    <TypewriterInput v-model="childAge" round placeholder="6" required :validateField="validateFields">
+                                    <n-input v-model:value="childAge" round placeholder="6" style="z-index: 101;">
                                         <template #suffix>
                                             years old
                                         </template>
-                                    </TypewriterInput>
+                                    </n-input>
                                     What is your favorite character or topic?
-                                    <TypewriterInput v-model="childInterests" round placeholder="Snow White" required :validateField="validateFields" />
+                                    <n-input v-model:value="childInterests" round placeholder="Snow White" style="z-index: 101;" />
                                     <div style="display: flex; justify-content: center; position: relative;">
                                     <div :style="{ width: '180px', height: '10px', backgroundColor: '#FFFFFF4D', position: 'absolute', top: '5px', borderRadius: '20px', zIndex: 101 }"></div>
                                     <n-button id="start-button" type="info" @click="playPageSentences" :style="{ border: 'none', zIndex: 100 }">
-                                        <img src='/imgs/ring.svg' alt='ring' :style="{ width: '25px', height: '25px', position: 'absolute', top: '2px', right: '6px', borderRadius: '50%', zIndex: 101 }" />
-                                        Start Reading!
+                                        <span>Start Reading!</span>
                                     </n-button>
                                 </div>
                                 </n-space>
@@ -1238,6 +1232,8 @@ const playPageSentences = () => {
 }
 
 #start-button {
+    position: relative;
+    overflow: hidden;
     z-index: 100;
     font-family: 'Cherry Bomb';
     font-size: 18px;
@@ -1250,6 +1246,23 @@ const playPageSentences = () => {
     padding: 8px 42px;
     height: 40px;
     border-radius: 50px;
+}
+
+#start-button span {
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .demo-container {
