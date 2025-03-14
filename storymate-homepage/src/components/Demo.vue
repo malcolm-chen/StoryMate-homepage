@@ -968,6 +968,7 @@ const playPageSentences = () => {
         
             client.realtime.send('response.create');
             remainingRequests.value = remainingRequests.value - 1;
+            
             localStorage.setItem('remainingRequests', remainingRequests.value);
             items.value = client.conversation.getItems();
 
@@ -1105,7 +1106,7 @@ const playPageSentences = () => {
                         </div>
                     </div>
                 </div>
-                <div v-if="isChatting" id='chat-container' :style="{ position: 'absolute', height: chatBoxSize.height }">
+                <div v-if="isChatting" id='chat-container' :style="{ position: 'absolute' }">
                     <div v-if="isRecording" id='recording-layer' :style="{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '16px', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 101}"></div>
                     <div v-if="isRecording" id='audio-visualizer' :style="{position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px', zIndex: 101}">
                         <AudioWave />
@@ -1120,7 +1121,7 @@ const playPageSentences = () => {
                             <div v-if="msg.role === 'user'" id="user-chat">
                                 <n-avatar round id='user-avatar' :style="{ backgroundColor: '#ACD793', marginRight: '8px' }">{{ childName.substring(0, 2) }}</n-avatar>
                                 <div id="msg-bubble" :style="{ backgroundColor: '#ECECEC' }">
-                                    <h4 v-if="msg.content[0].transcript !== null" level="body-lg" :style="{ margin: '0px' }">{{ msg.content[0].transcript }}</h4>
+                                    <h4 v-if="msg.content[0].transcript !== null" level="body-lg" :style="{ margin: '0px', lineHeight: '1.2' }">{{ msg.content[0].transcript }}</h4>
                                     <n-icon v-else>
                                         <LoadingOutlined id="loading-icon" size="30" color="#7AA2E3" />
                                     </n-icon>
@@ -1129,7 +1130,7 @@ const playPageSentences = () => {
                             <div v-else id="chatbot-chat">
                                 <img id='chatbot-avatar' src='/imgs/penguin.svg' />
                                 <div id="msg-bubble" :style="{ position: 'relative' }" @click="handleReplay(index)">
-                                    <h4 v-if="!msg.content?.[0]?.transcript?.startsWith('<')" level="body-lg" :style="{ margin: '0px', marginRight: '30px' }">
+                                    <h4 v-if="!msg.content?.[0]?.transcript?.startsWith('<')" level="body-lg" :style="{ margin: '0px', marginRight: '30px', lineHeight: '1.2' }">
                                         {{ msg.content?.[0]?.transcript }}
                                     </h4>
                                     <n-button v-if="msg.status === 'completed' && !msg.content?.[0]?.transcript?.startsWith('<')" id="replay-btn" :key="index" quaternary :style="{ position: 'absolute', right: '8px', bottom: '8px' }">
@@ -1389,7 +1390,31 @@ const playPageSentences = () => {
   align-items: center;
   position: absolute;
   right: 32px;
-  bottom: 10px;
+  bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  #caption {
+    font-size: 22px;
+    line-height: 1.2 !important;
+  }
+
+  #penguin-box img {
+    width: 60px !important;
+    right: 10px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #caption {
+    font-size: 20px;
+    line-height: 1.2 !important;
+  }
+
+  #penguin-box img {
+    width: 48px !important;
+    right: 5px !important;
+  }
 }
 
 #recording-layer {
@@ -1439,6 +1464,18 @@ const playPageSentences = () => {
   height: calc(100% - 130px);
 }
 
+@media screen and (max-width: 768px) {
+  .chat-window {
+    height: calc(100% - 100px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .chat-window {
+    height: calc(100% - 80px);
+  }
+}
+
 #chat-input {
   border: none;
   cursor: pointer;
@@ -1449,6 +1486,17 @@ const playPageSentences = () => {
   position: relative;
   z-index: 100;
 }
+
+@media screen and (max-width: 480px) {
+  #chat-input {
+    height: 50px !important;
+  }
+  #chat-input h4 {
+    font-size: 24px !important;
+  }
+}
+
+
 
 #moon-chat-box {
   position: absolute;
@@ -1463,19 +1511,35 @@ const playPageSentences = () => {
   flex-grow: 1;
   margin: 0 16px;
   padding: 16px;
-  width: calc(100% - 350px);
+  width: calc(100% - 250px);
   max-width: calc(100% - 64px);
-  height: 60%;
+  right: 120px;
+  height: 70%;
   position: absolute;
   box-shadow: 0 4px 10px 0 #0C1560;
   border-radius: 16px;
   position: absolute;
-  z-index: 100;
-  bottom: 16px;
+  z-index: 103;
+  bottom: 5px;
   background-color: #ffffff;
   min-width: 0;
-  right: 180px;
   background-image: linear-gradient(to bottom, #261E70, #5C4ED3);
+}
+
+@media screen and (max-width: 768px) {
+  #chat-container {
+    width: calc(100% - 180px) !important;
+    height: 80% !important;
+    right: 90px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #chat-container {
+    width: calc(100% - 64px) !important;
+    height: 100% !important;
+    right: 52px !important;
+  }
 }
 
 #loading-box {
@@ -1501,7 +1565,7 @@ const playPageSentences = () => {
 
 #recording-box {
   width: 100%;
-  height: 100px;
+  height: 20%;
   margin-top: 16px;
   padding: 12px;
   position: relative;

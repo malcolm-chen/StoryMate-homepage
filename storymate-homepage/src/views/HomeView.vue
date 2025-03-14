@@ -206,7 +206,7 @@ const scrollToRW = () => {
           <a href="https://www.dakuowang.com/" style="color: oklch(.623 .214 259.815);">Dakuo Wang</a>,
           <a href="https://www.yulingsun.net/" style="color: oklch(.623 .214 259.815);">Yuling Sun</a>.
         </div>
-        <div style="display: flex; gap: 16px; margin: 16px 0;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0;">
           <a href="https://arxiv.org/abs/2311.09756" target="_blank">
             <n-button round type="info">
               <template #icon>
