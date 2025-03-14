@@ -164,7 +164,7 @@ const scrollToRW = () => {
     </div>
     <div class="row center">
         <p style="font-size: 18px; font-weight: 300; color: #333;">
-            We have updated StoryMate's UI with faster response 😎 Imagine your self as a kid and try our demo!
+            We have updated StoryMate's UI with faster response 😎 Imagine yourself as a kid and try our demo!
         </p>
     </div>
     <div class="row center" id="demo-section">
