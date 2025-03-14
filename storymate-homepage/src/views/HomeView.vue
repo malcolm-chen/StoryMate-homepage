@@ -341,7 +341,7 @@ const scrollToRW = () => {
             </n-button>
           </a>
         </div>
-        <p>
+        <p class="flex-1 bg-gray-100 p-4 rounded-lg">
           Interactive storytelling is vital for preschooler development. While children's interactive partners have traditionally been their parents and teachers, recent advances in artificial intelligence (AI) have sparked a surge of AI-based storytelling and reading technologies. As these technologies become increasingly ubiquitous in preschoolers' lives, questions arise regarding how they function in practical storytelling and reading scenarios and, how parents, the most critical stakeholders, experience and perceive these technologies. This paper investigates these questions through a qualitative study with 17 parents of children aged 3-6. Our findings suggest that even though AI-based storytelling and reading technologies provide more immersive and engaging interaction, they still cannot meet parents' expectations due to a series of interactive and algorithmic challenges. We elaborate on these challenges and discuss the possible implications of future AI-based interactive storytelling technologies for preschoolers.
         </p>
         <n-carousel>
