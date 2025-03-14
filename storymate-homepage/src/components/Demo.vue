@@ -1421,6 +1421,14 @@ const playPageSentences = () => {
   #penguin-box img {
     width: 48px !important;
   }
+
+  #chatbot-avatar {
+    width: 40px !important;
+  }
+
+  #chat-container {
+    margin: 0 5px !important;
+  }
 }
 
 #recording-layer {
