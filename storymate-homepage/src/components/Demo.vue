@@ -1399,9 +1399,12 @@ const playPageSentences = () => {
     line-height: 1.2 !important;
   }
 
+  #penguin-box {
+    right: 10px !important;
+  }
+
   #penguin-box img {
     width: 60px !important;
-    right: 10px !important;
   }
 }
 
@@ -1411,9 +1414,12 @@ const playPageSentences = () => {
     line-height: 1.2 !important;
   }
 
+  #penguin-box {
+    right: 5px !important;
+  }
+
   #penguin-box img {
     width: 48px !important;
-    right: 5px !important;
   }
 }
 
