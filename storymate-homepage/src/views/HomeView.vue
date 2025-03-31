@@ -429,7 +429,7 @@ const scrollToRW = () => {
         <pre class="citation-text" ref="citationText">
 @inproceedings{chen2025storymate,
   author    = {Jiaju Chen and Minglong Tang and Yuxuan Lu and Bingsheng Yao and Elissa Fan and Xiaojuan Ma and Ying Xu and Dakuo Wang and Yuling Sun and Liang He},
-  title     = {StoryMate: An LLM-Empowered Personalized Interactive Story-Reading Tool for Children},
+  title     = {Characterizing LLM-Empowered Personalized Story-Reading and Interaction for Children: Insights from Multi-Stakeholder Perspectives},
   booktitle = {Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems},
   year      = {2025},
   month     = {April},
